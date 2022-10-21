@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import LayoutPage from './ui/Container/Layout/Pages/layout.page'
+import { DataContext } from './ui/Hooks/jsonContext'
+
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
 }
 
-export default App;
+export default function App() {
+
+  const [data, setData] = useState([{codigo:'test',nombre:'test',docena:4,unidad:5}])
+
+  const dataSettings = {
+    data,
+    setData
+  }
+
+  return (
+    <DataContext.Provider value={dataSettings} >
+    <LayoutPage/>
+    </DataContext.Provider>
+  )
+}
